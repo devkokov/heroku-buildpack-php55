@@ -97,16 +97,13 @@ fi
 mkdir -p $build_dir/.heroku/php-min
 ln -s $build_dir/.heroku/php-min /app/.heroku/php-min
 
-curl_retry_on_18 --fail --silent --location -o $build_dir/.heroku/php-min.tar.gz "http://chh-heroku-buildpack-php.s3.amazonaws.com/package/php-5.5.24.tgz" || error "Failed to download minimal PHP for bootstrapping.
+curl_retry_on_18 --fail --silent --location -o $build_dir/.heroku/php-min.tar.gz "https://burnthebook.s3.amazonaws.com/buildpacks/php-55.tar.gz" || error "Failed to download minimal PHP for bootstrapping.
 Please try again, or contact support if this problem persists."
 tar xzf $build_dir/.heroku/php-min.tar.gz -C $build_dir/.heroku/php-min
 rm $build_dir/.heroku/php-min.tar.gz
 
-curl_retry_on_18 --fail --silent --location -o $build_dir/.heroku/composer.phar "http://chh-heroku-buildpack-php.s3.amazonaws.com/composer/composer.phar" || error "Failed to download Composer. Please try again, or contact support if this problem persists."
 mkdir -p $build_dir/.heroku/php/bin
-cp $build_dir/.heroku/composer.phar $build_dir/.heroku/php/bin/composer
-chmod a+x $build_dir/.heroku/php/bin/composer
-rm $build_dir/.heroku/composer.phar
+cp $build_dir/.heroku/php-min/bin/composer $build_dir/.heroku/php/bin/composer
 
 # this alias is just for now while we install platform packages
 composer() {
