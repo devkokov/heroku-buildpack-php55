@@ -104,8 +104,8 @@ rm $build_dir/.heroku/php-min.tar.gz
 
 mkdir -p $build_dir/.heroku/php/bin
 cp $build_dir/.heroku/php-min/bin/composer $build_dir/.heroku/php/bin/composer
-cp $build_dir/.heroku/php-min/composer.json $build_dir/.heroku/php/composer.json
-cp $build_dir/.heroku/php-min/composer.lock $build_dir/.heroku/php/composer.lock
+cp $build_dir/.heroku/php-min/composer.json $build_dir/composer.json
+cp $build_dir/.heroku/php-min/composer.lock $build_dir/composer.lock
 
 # this alias is just for now while we install platform packages
 composer() {
