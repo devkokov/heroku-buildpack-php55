@@ -28,6 +28,20 @@ unset GIT_DIR
 
 cd $build_dir
 
+
+status "Installing Dimitar's custom packages for compatibility with Heroku-18..."
+apt-get update
+apt-get install software-properties-common -y
+add-apt-repository ppa:xapienz/curl34
+apt-get update
+apt-get install curl apache2 -y
+wget http://de.archive.ubuntu.com/ubuntu/pool/main/r/readline6/libreadline6_6.3-8ubuntu2_amd64.deb
+apt install ./libreadline6_6.3-8ubuntu2_amd64.deb
+wget https://launchpad.net/~ubuntu-security/+archive/ubuntu/ppa/+build/15108504/+files/libpng12-0_1.2.54-1ubuntu1.1_amd64.deb
+apt install ./libpng12-0_1.2.54-1ubuntu1.1_amd64.deb
+status "Dimitar's custom packages are installed!"
+
+
 export_env_dir "$env_dir" '^COMPOSER$'
 if [[ -n ${COMPOSER:-} ]]; then
     status "Using '$COMPOSER' (from "'$COMPOSER env var) for installation.'
